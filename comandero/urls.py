@@ -21,6 +21,8 @@ from django.contrib import admin
 
 router = routers.DefaultRouter()
 router.register(r'ordenes', views.OrdenViewSet)
+router.register(r'ordenes/[0-9]+/lines', views.LineViewSet)
+
 
 
 # Wire up our API using automatic URL routing.
