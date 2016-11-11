@@ -1,23 +1,17 @@
 from models import Orden, Line
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
 
 
-class LineSerializer(serializers.ModelSerializer):
+class LineSerializer(ModelSerializer):
     class Meta:
         model = Line
-        fields = ('cantidad', 'producto')
+        fields = ('id','cantidad', 'producto','orden')
 
-class OrdenSerializer(serializers.ModelSerializer):
-    lines = LineSerializer(many=True)
+class OrdenSerializer(ModelSerializer):
+    lines = LineSerializer(many=True, read_only=True)
 
     class Meta:
         model = Orden
-        fields = ('mesa', 'lines')
+        fields = ('id','mesa', 'lines')
 
-    def create(self, validated_data):
-        lines_data = validated_data.pop('lines')
-        orden = Orden.objects.create(**validated_data)
-        for line_data in lines_data:
-            Line.objects.create(orden=orden, **line_data)
-        return orden
 
