@@ -21,7 +21,8 @@ from django.contrib import admin
 
 router = routers.DefaultRouter()
 router.register(r'ordenes', views.OrdenViewSet)
-router.register(r'ordenes/(?P<id>.+)/lines', views.LineViewSet)
+router.register(r'ordenes/(?P<orden_pk>.+)/lines', views.OrdenLinesViewSet)
+router.register(r'lines/', views.LineViewSet)
 
 
 
