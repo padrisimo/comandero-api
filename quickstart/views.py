@@ -29,9 +29,6 @@ class OrdenLinesViewSet(viewsets.ModelViewSet):
 
     # hacer create
     def create(self, request, orden_pk):
-
-
-
         print orden_pk
         print request.data
         request.data['orden'] = orden_pk
@@ -44,7 +41,7 @@ class OrdenLinesViewSet(viewsets.ModelViewSet):
 # Line views
 class LineViewSet(viewsets.ModelViewSet):
     """
-    API endpoint que permite editar y ver Ordenes
+    API endpoint que permite editar y ver Lines
     """
     queryset = Line.objects.all()
     serializer_class = LineSerializer
